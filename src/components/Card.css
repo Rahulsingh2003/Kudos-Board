@@ -1,0 +1,64 @@
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 400px;
+    font-family: Arial, sans-serif;
+    position: relative;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-id {
+    color: #6b7280;
+    font-size: 14px;
+  }
+  
+  .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    color: #111827;
+    margin: 12px 0;
+  }
+  
+  .card-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+  
+  .status {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f3f4f6;
+    margin-right: 8px;
+  }
+  
+  .status-icon {
+    background-color: #6b7280;
+    color: white;
+    border-radius: 4px;
+    padding: 4px;
+    margin-right: 8px;
+    font-size: 12px;
+  }
+  
+  .status-label {
+    font-size: 14px;
+    color: #6b7280;
+  }
+  

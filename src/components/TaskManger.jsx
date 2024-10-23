@@ -34,7 +34,12 @@ const TaskManager = () => {
 
   return (
     <div>
-      <NavBar setGroupBy={setGroupBy} setOrderBy={setOrderBy} updateTasks={updateTasks} />
+      <NavBar 
+        groupBy={groupBy} 
+        setGroupBy={setGroupBy} 
+        orderBy={orderBy} 
+        setOrderBy={setOrderBy} 
+      />
       <MainBoard tasks={tasks} users={users} groupBy={groupBy} orderBy={orderBy} />
     </div>
   );

@@ -35,9 +35,33 @@
 }
 
 .card-footer {
-  display: flex;
-  align-items: center;
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Allow wrapping to the next line */
+  margin-top: 10px; /* Space above the tags */
 }
+
+.tag-button {
+  background-color: #ffffff; /* Primary color */
+  color: grey; /* Text color */
+  border: solid 1px; /* No border */
+  border-radius: 8px; /* Slightly larger rounded corners */
+  padding: 8px 15px; /* Increased padding for a bigger button */
+  margin-right: 8px; /* Space between buttons */
+  margin-bottom: 8px; /* Space below each button */
+  font-size: 14px; /* Slightly larger text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.tag-button:hover {
+  background-color: #ffffff; /* Darker shade on hover */
+}
+
+.tag-button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); /* Custom focus outline */
+}
+
 
 .status {
   display: flex;
@@ -59,6 +83,70 @@
   font-size: 14px;
   color: #666;
 }
+
+.card {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.card-id {
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 1.5em;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-container {
+  display: flex;
+  align-items: center; /* Align the icon and button vertically */
+  margin-right: 16px;
+  margin-bottom: 8px;
+}
+
+.priority-icon {
+  margin-right: 8px; /* Space between the icon and the button */
+  height: 16px; /* Adjust the icon size */
+  width: 16px;
+}
+
+.tag-button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.tag-button:hover {
+  background-color: #e2e2e2;
+}
+
 
 /* Responsive styles */
 @media (min-width: 768px) {

@@ -1,15 +1,21 @@
 import React from 'react';
 import CardColumn from './CardColumn';
 import './Board.css';
+import NoPriorityIcon from '../assets/icons_FEtask/No-priority.svg'; 
+import UrgentIcon from '../assets/icons_FEtask/SVG - Urgent Priority colour.svg'; 
+import HighIcon from '../assets/icons_FEtask/Img - High Priority.svg'; 
+import MediumIcon from '../assets/icons_FEtask/Img - Medium Priority.svg'; 
+import LowIcon from '../assets/icons_FEtask/Img - Low Priority.svg'; 
+import Todosv from '../assets/icons_FEtask/To-do.svg'; 
+import Inpo from '../assets/icons_FEtask/in-progress.svg'; 
+import Backlo from '../assets/icons_FEtask/Backlog.svg';
 
 const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
-  // Create a map of users based on the fetched data
   const usersMap = users.reduce((acc, user) => {
     acc[user.id] = { name: user.name, available: user.available };
     return acc;
   }, {});
 
-  // Categorize tasks by priority
   const categorizedTasks = (tasks) => {
     const categorized = {
       "No Priority": [],
@@ -44,7 +50,6 @@ const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
     return categorized;
   };
 
-  // Group tasks based on grouping preference
   const getGroupedTasks = () => {
     if (groupBy === 'User') {
       return tasks.reduce((acc, task) => {
@@ -63,12 +68,11 @@ const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
     }
   };
 
-  // Sort tasks based on ordering preference
   const displayTasks = () => {
     if (orderBy === 'None') {
       return getGroupedTasks();
     } else if (orderBy === 'Priority') {
-      return categorizedTasks(tasks); // Categorize by priority
+      return categorizedTasks(tasks);
     }
     return {};
   };
@@ -80,8 +84,30 @@ const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
       {Object.keys(groupedTasks).map((group) => (
         <CardColumn 
           key={group} 
-          title={`${group} (${groupedTasks[group].length})`} 
-          cards={groupedTasks[group]} 
+          title={
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              {/* Icons for priorities */}
+              {group === "Urgent" && <img src={UrgentIcon} alt="Urgent icon" className="priority-icon" style={{ marginRight: '8px' }} />}
+              {group === "High" && <img src={HighIcon} alt="High icon" className="priority-icon" style={{ marginRight: '8px' }} />}
+              {group === "Medium" && <img src={MediumIcon} alt="Medium icon" className="priority-icon" style={{ marginRight: '8px' }} />}
+              {group === "Low" && <img src={LowIcon} alt="Low icon" className="priority-icon" style={{ marginRight: '8px' }} />}
+              {group === "No Priority" && <img src={NoPriorityIcon} alt="No priority icon" className="priority-icon" style={{ marginRight: '8px' }} />}
+              {/* Icons for statuses */}
+              {group === "Todo" && <img src={Todosv} alt="Todo icon" className="todo-icon" style={{ marginRight: '8px' }} />}
+              {group === "In progress" && <img src={Inpo} alt="In progress icon" className="todo-icon" style={{ marginRight: '8px' }} />}
+              {group === "Backlog" && <img src={Backlo} alt="Backlog icon" className="todo-icon" style={{ marginRight: '8px' }} />}
+              <span style={{ marginLeft: '8px' }}>{group}</span>
+            </span>
+          } 
+          cards={groupedTasks[group].map((task) => ({
+            ...task,
+            title: (
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                {task.status === 'In progress' && <img src={Inpo} alt="In progress icon" style={{ marginRight: '8px' }} />}
+                {task.title}
+              </span>
+            )
+          }))} // Add icon to task title if in progress
           users={usersMap} 
         />
       ))}

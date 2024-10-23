@@ -1,12 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './NavBar.css';
+import DisplayIcon from '../assets/icons_FEtask/Display.svg';
 
-const NavBar = ({ setGroupBy, setOrderBy, updateTasks }) => {
+const NavBar = ({ groupBy, setGroupBy, orderBy, setOrderBy }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null); // Create a ref for the dropdown menu
 
   const handleGroupByChange = (value) => {
     setGroupBy(value);
   };
+
+  const handleOrderByChange = (value) => {
+    setOrderBy(value);
+  };
+
+  // Handle clicks outside of the dropdown to close it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    // Attach the event listener to the document
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div>
@@ -16,15 +39,17 @@ const NavBar = ({ setGroupBy, setOrderBy, updateTasks }) => {
             className="display-button"
             onClick={() => setShowDropdown(!showDropdown)}
           >
-            <span className="icon">&#9881;</span> Display
+            <img src={DisplayIcon} alt="Display icon" className="display-icon" />
+            <span className="icon-text">Display</span>
           </button>
 
           {showDropdown && (
-            <div className="dropdown-menu">
+            <div className="dropdown-menu" ref={dropdownRef}>
               <div className="dropdown-item">
                 <label htmlFor="groupBy">Grouping:</label>
                 <select
                   id="groupBy"
+                  value={groupBy} // Use the passed value here
                   onChange={(e) => handleGroupByChange(e.target.value)}
                 >
                   <option value="Status">Status</option>
@@ -36,7 +61,8 @@ const NavBar = ({ setGroupBy, setOrderBy, updateTasks }) => {
                 <label htmlFor="orderBy">Ordering:</label>
                 <select
                   id="orderBy"
-                  onChange={(e) => setOrderBy(e.target.value)}
+                  value={orderBy} // Use the passed value here
+                  onChange={(e) => handleOrderByChange(e.target.value)}
                 >
                   <option value="None">None</option>
                   <option value="Priority">Priority</option>

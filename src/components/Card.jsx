@@ -1,9 +1,60 @@
 import React from 'react';
 import './Card.css';
 
-const Card = ({ id, title, tag, userId, users }) => {
-  // Access user details based on userId from users map
+import NoPriorityIcon from '../assets/icons_FEtask/No-priority.svg';
+import UrgentIcon from '../assets/icons_FEtask/SVG - Urgent Priority colour.svg';
+import HighPriorityIcon from '../assets/icons_FEtask/Img - High Priority.svg';
+import MediumPriorityIcon from '../assets/icons_FEtask/Img - Medium Priority.svg';
+import LowPriorityIcon from '../assets/icons_FEtask/Img - Low Priority.svg';
+
+import TodoIcon from '../assets/icons_FEtask/To-do.svg'; // Add Todo SVG
+import InProgressIcon from '../assets/icons_FEtask/in-progress.svg'; // Add In Progress SVG
+import BacklogIcon from '../assets/icons_FEtask/Backlog.svg'; // Add Backlog SVG
+
+const Card = ({ id, title, tag, userId, users, status, priority }) => {
   const user = users[userId] || { name: 'Unknown User', available: false };
+
+  // Determine the priority icon
+  let priorityIcon;
+  switch (priority) {
+    case 4:
+      priorityIcon = UrgentIcon;
+      break;
+    case 3:
+      priorityIcon = HighPriorityIcon;
+      break;
+    case 2:
+      priorityIcon = MediumPriorityIcon;
+      break;
+    case 1:
+      priorityIcon = LowPriorityIcon;
+      break;
+    case 0:
+    default:
+      priorityIcon = NoPriorityIcon;
+      break;
+  }
+
+  // Determine the status icon
+  let statusIcon;
+  switch (status) {
+    case 'Todo':
+      statusIcon = TodoIcon;
+      break;
+    case 'In Progress':
+      statusIcon = InProgressIcon;
+      break;
+    case 'Backlog':
+      statusIcon = BacklogIcon;
+      break;
+    default:
+      statusIcon = null;
+      break;
+  }
+
+  const handleTagClick = (tag) => {
+    console.log(`Tag clicked: ${tag}`);
+  };
 
   return (
     <div className="card">
@@ -20,9 +71,21 @@ const Card = ({ id, title, tag, userId, users }) => {
           </span>
         </div>
       </div>
-      <h2 className="card-title">{title}</h2>
+      <h2 className="card-title">
+        {statusIcon && <img src={statusIcon} alt={`${status} icon`} className="status-icon" />}
+        {title}
+      </h2>
       <div className="card-footer">
-        <span className="tag">{tag.join(", ")}</span>
+        {tag.map((t, index) => (
+          <div key={index} className="tag-container">
+            {t === "Feature Request" && priorityIcon && (
+              <img src={priorityIcon} alt={`${priority} priority icon`} className="priority-icon" />
+            )}
+            <button className="tag-button" onClick={() => handleTagClick(t)}>
+              {t}
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -25,3 +25,18 @@
     gap: 12px;
   }
   
+  
+  .todo-icon {
+    width: 20px;  /* Adjust size as needed */
+    height: auto;
+    margin-right: 12px;  /* Increase space between the icon and the title */
+    vertical-align: middle;  /* Align with text */
+  }
+  
+  .priority-icon {
+    width: 20px; /* Adjust the size as needed */
+    height: auto;
+    vertical-align: middle; /* Align with the text */
+  }
+  
+  

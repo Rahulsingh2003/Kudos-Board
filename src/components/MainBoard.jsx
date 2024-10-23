@@ -86,13 +86,13 @@ const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
           key={group} 
           title={
             <span style={{ display: 'flex', alignItems: 'center' }}>
-              {/* Icons for priorities */}
+              
               {group === "Urgent" && <img src={UrgentIcon} alt="Urgent icon" className="priority-icon" style={{ marginRight: '8px' }} />}
               {group === "High" && <img src={HighIcon} alt="High icon" className="priority-icon" style={{ marginRight: '8px' }} />}
               {group === "Medium" && <img src={MediumIcon} alt="Medium icon" className="priority-icon" style={{ marginRight: '8px' }} />}
               {group === "Low" && <img src={LowIcon} alt="Low icon" className="priority-icon" style={{ marginRight: '8px' }} />}
               {group === "No Priority" && <img src={NoPriorityIcon} alt="No priority icon" className="priority-icon" style={{ marginRight: '8px' }} />}
-              {/* Icons for statuses */}
+              
               {group === "Todo" && <img src={Todosv} alt="Todo icon" className="todo-icon" style={{ marginRight: '8px' }} />}
               {group === "In progress" && <img src={Inpo} alt="In progress icon" className="todo-icon" style={{ marginRight: '8px' }} />}
               {group === "Backlog" && <img src={Backlo} alt="Backlog icon" className="todo-icon" style={{ marginRight: '8px' }} />}
@@ -107,7 +107,7 @@ const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
                 {task.title}
               </span>
             )
-          }))} // Add icon to task title if in progress
+          }))} 
           users={usersMap} 
         />
       ))}

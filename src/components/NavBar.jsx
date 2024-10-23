@@ -4,7 +4,7 @@ import DisplayIcon from '../assets/icons_FEtask/Display.svg';
 
 const NavBar = ({ groupBy, setGroupBy, orderBy, setOrderBy }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef(null); // Create a ref for the dropdown menu
+  const dropdownRef = useRef(null); 
 
   const handleGroupByChange = (value) => {
     setGroupBy(value);
@@ -14,7 +14,7 @@ const NavBar = ({ groupBy, setGroupBy, orderBy, setOrderBy }) => {
     setOrderBy(value);
   };
 
-  // Handle clicks outside of the dropdown to close it
+ 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -22,10 +22,10 @@ const NavBar = ({ groupBy, setGroupBy, orderBy, setOrderBy }) => {
       }
     };
 
-    // Attach the event listener to the document
+  
     document.addEventListener('mousedown', handleClickOutside);
     
-    // Cleanup the event listener on component unmount
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -49,7 +49,7 @@ const NavBar = ({ groupBy, setGroupBy, orderBy, setOrderBy }) => {
                 <label htmlFor="groupBy">Grouping:</label>
                 <select
                   id="groupBy"
-                  value={groupBy} // Use the passed value here
+                  value={groupBy} 
                   onChange={(e) => handleGroupByChange(e.target.value)}
                 >
                   <option value="Status">Status</option>
@@ -61,7 +61,7 @@ const NavBar = ({ groupBy, setGroupBy, orderBy, setOrderBy }) => {
                 <label htmlFor="orderBy">Ordering:</label>
                 <select
                   id="orderBy"
-                  value={orderBy} // Use the passed value here
+                  value={orderBy} 
                   onChange={(e) => handleOrderByChange(e.target.value)}
                 >
                   <option value="None">None</option>

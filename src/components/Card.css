@@ -1,4 +1,4 @@
-/* General card styles */
+
 .card {
   background-color: white;
   border-radius: 10px;
@@ -35,31 +35,31 @@
 }
 
 .card-footer {
-  display: flex; /* Use flexbox for layout */
-  flex-wrap: wrap; /* Allow wrapping to the next line */
-  margin-top: 10px; /* Space above the tags */
+  display: flex; 
+  flex-wrap: wrap; 
+  margin-top: 10px; 
 }
 
 .tag-button {
-  background-color: #ffffff; /* Primary color */
-  color: grey; /* Text color */
-  border: solid 1px; /* No border */
-  border-radius: 8px; /* Slightly larger rounded corners */
-  padding: 8px 15px; /* Increased padding for a bigger button */
-  margin-right: 8px; /* Space between buttons */
-  margin-bottom: 8px; /* Space below each button */
-  font-size: 14px; /* Slightly larger text */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  background-color: #ffffff; 
+  color: grey; 
+  border: solid 1px; 
+  border-radius: 8px; 
+  padding: 8px 15px; 
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 14px; 
+  cursor: pointer; 
+  transition: background-color 0.3s; 
 }
 
 .tag-button:hover {
-  background-color: #ffffff; /* Darker shade on hover */
+  background-color: #ffffff; 
 }
 
 .tag-button:focus {
-  outline: none; /* Remove default focus outline */
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); /* Custom focus outline */
+  outline: none; 
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5); 
 }
 
 
@@ -124,14 +124,14 @@
 
 .tag-container {
   display: flex;
-  align-items: center; /* Align the icon and button vertically */
+  align-items: center; 
   margin-right: 16px;
   margin-bottom: 8px;
 }
 
 .priority-icon {
-  margin-right: 8px; /* Space between the icon and the button */
-  height: 16px; /* Adjust the icon size */
+  margin-right: 8px; 
+  height: 16px; 
   width: 16px;
 }
 
@@ -148,10 +148,10 @@
 }
 
 
-/* Responsive styles */
+
 @media (min-width: 768px) {
   .card {
-    max-width: 500px; /* Larger width for bigger screens */
+    max-width: 500px; 
   }
 }
 

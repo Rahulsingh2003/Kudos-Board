@@ -11,8 +11,8 @@ const CardColumn = ({ title, cards, users }) => {
   return (
     <div className="column">
       <h3 className="column-title">
-        {IconComponent && <IconComponent className="todo-icon" />} {/* Render the icon */}
-        {title} {/* Render the title */}
+        {IconComponent && <IconComponent className="todo-icon" />} 
+        {title} 
       </h3>
       <div className="card-list">
         {cards.map((card) => (

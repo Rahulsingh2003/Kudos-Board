@@ -27,16 +27,16 @@
   
   
   .todo-icon {
-    width: 20px;  /* Adjust size as needed */
+    width: 20px;  
     height: auto;
-    margin-right: 12px;  /* Increase space between the icon and the title */
-    vertical-align: middle;  /* Align with text */
+    margin-right: 12px;  
+    vertical-align: middle; 
   }
   
   .priority-icon {
-    width: 20px; /* Adjust the size as needed */
+    width: 20px; 
     height: auto;
-    vertical-align: middle; /* Align with the text */
+    vertical-align: middle;
   }
   
   

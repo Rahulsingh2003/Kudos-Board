@@ -7,14 +7,14 @@ import HighPriorityIcon from '../assets/icons_FEtask/Img - High Priority.svg';
 import MediumPriorityIcon from '../assets/icons_FEtask/Img - Medium Priority.svg';
 import LowPriorityIcon from '../assets/icons_FEtask/Img - Low Priority.svg';
 
-import TodoIcon from '../assets/icons_FEtask/To-do.svg'; // Add Todo SVG
-import InProgressIcon from '../assets/icons_FEtask/in-progress.svg'; // Add In Progress SVG
-import BacklogIcon from '../assets/icons_FEtask/Backlog.svg'; // Add Backlog SVG
+import TodoIcon from '../assets/icons_FEtask/To-do.svg';
+import InProgressIcon from '../assets/icons_FEtask/in-progress.svg'; 
+import BacklogIcon from '../assets/icons_FEtask/Backlog.svg'; 
 
 const Card = ({ id, title, tag, userId, users, status, priority }) => {
   const user = users[userId] || { name: 'Unknown User', available: false };
 
-  // Determine the priority icon
+ 
   let priorityIcon;
   switch (priority) {
     case 4:
@@ -35,7 +35,6 @@ const Card = ({ id, title, tag, userId, users, status, priority }) => {
       break;
   }
 
-  // Determine the status icon
   let statusIcon;
   switch (status) {
     case 'Todo':

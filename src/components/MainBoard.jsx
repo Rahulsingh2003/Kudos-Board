@@ -1,32 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CardColumn from './CardColumn';
-import "./Board.css";
+import './Board.css';
 
-const MainBoard = ({ tasks, groupBy, orderBy }) => {
-  const [users, setUsers] = useState({}); // Initialize as an empty object
+const MainBoard = ({ tasks, users, groupBy, orderBy }) => {
+  // Create a map of users based on the fetched data
+  const usersMap = users.reduce((acc, user) => {
+    acc[user.id] = { name: user.name, available: user.available };
+    return acc;
+  }, {});
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('https://api.quicksell.co/v1/internal/frontend-users');
-        const userData = await response.json();
-        // Create a map of userId to user details
-        const userMap = userData.reduce((acc, user) => {
-          acc[user.id] = {
-            name: user.name,
-            available: user.available, // Assuming you have this field
-          };
-          return acc;
-        }, {});
-        setUsers(userMap); // Set users into state
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-    };
-    fetchUsers();
-  }, []);
-
-  // Categorize tasks based on their priority
+  // Categorize tasks by priority
   const categorizedTasks = (tasks) => {
     const categorized = {
       "No Priority": [],
@@ -61,16 +44,17 @@ const MainBoard = ({ tasks, groupBy, orderBy }) => {
     return categorized;
   };
 
-  // Get the grouped tasks based on grouping preference
+  // Group tasks based on grouping preference
   const getGroupedTasks = () => {
     if (groupBy === 'User') {
       return tasks.reduce((acc, task) => {
-        acc[task.userId] = acc[task.userId] || [];
-        acc[task.userId].push(task);
+        const user = usersMap[task.userId];
+        const userName = user ? user.name : 'Unknown User';
+        acc[userName] = acc[userName] || [];
+        acc[userName].push(task);
         return acc;
       }, {});
     } else {
-      // Default grouping by Status
       return tasks.reduce((acc, task) => {
         acc[task.status] = acc[task.status] || [];
         acc[task.status].push(task);
@@ -79,7 +63,7 @@ const MainBoard = ({ tasks, groupBy, orderBy }) => {
     }
   };
 
-  // Determine how to display tasks based on orderBy selection
+  // Sort tasks based on ordering preference
   const displayTasks = () => {
     if (orderBy === 'None') {
       return getGroupedTasks();
@@ -96,9 +80,9 @@ const MainBoard = ({ tasks, groupBy, orderBy }) => {
       {Object.keys(groupedTasks).map((group) => (
         <CardColumn 
           key={group} 
-          title={`${group} (${groupedTasks[group].length})`} // Show task count
+          title={`${group} (${groupedTasks[group].length})`} 
           cards={groupedTasks[group]} 
-          users={users} // Pass users to CardColumn
+          users={usersMap} 
         />
       ))}
     </div>
